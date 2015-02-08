@@ -1,17 +1,13 @@
 package xyz.jadonfowler.brutalpixel.entities;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
-import org.w3c.dom.css.Rect;
-
 import xyz.jadonfowler.brutalpixel.game.Game;
 import xyz.jadonfowler.brutalpixel.game.KeyInput;
 
 public class Player extends Entity{
 
-	private static final int MOVE_SPEED = 40;
+	private static final int MOVE_SPEED = 15;
 
 	
 	
@@ -24,8 +20,7 @@ public class Player extends Entity{
 	
 	
 	public void render(Graphics2D g) {
-		g.setColor(Color.GREEN);
-		g.fillRect(position.x, position.y, sprite.getWidth(), sprite.getHeight());
+		g.drawImage(sprite, position.x, position.y, null);
 	}
 
 	public void update() {

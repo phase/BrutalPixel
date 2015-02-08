@@ -10,7 +10,9 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import xyz.jadonfowler.brutalpixel.entities.Player;
@@ -89,9 +91,16 @@ public class Game extends JFrame implements Runnable {
 		cs.setMaximumSize(gameDim);
 		cs.setMinimumSize(gameDim);
 		this.add(cs, BorderLayout.CENTER);
-
-		player = new Player(new BufferedImage(32, 32,
-				BufferedImage.TYPE_INT_RGB));
+		
+		try {
+			BufferedImage playerSprite = 
+					ImageIO.read(getClass().getResourceAsStream("/player.png"));
+			player = new Player(playerSprite);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		keyInput = new KeyInput();
 		cs.addKeyListener(keyInput);
