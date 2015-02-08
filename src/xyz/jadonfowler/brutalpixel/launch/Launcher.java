@@ -4,17 +4,18 @@
  */
 package xyz.jadonfowler.brutalpixel.launch;
 
+import xyz.jadonfowler.brutalpixel.game.Game;
+
 /**
  * @author Jadon "Phase" Fowler on Feb 7, 2015
  */
 public class Launcher {
 
 	/**
-	 * @param args
+	 * Main method
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		new Game();
 	}
 
 }
