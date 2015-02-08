@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 public abstract class Entity {
 
 	String name;
-	Position position;
+	Vector2f position;
 	double health;
 	BufferedImage sprite;
 	

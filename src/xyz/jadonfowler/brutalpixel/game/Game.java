@@ -15,7 +15,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import xyz.jadonfowler.brutalpixel.entities.Mob;
 import xyz.jadonfowler.brutalpixel.entities.Player;
+import xyz.jadonfowler.brutalpixel.entities.Vector2f;
 
 /**
  * @author Jadon "Phase" Fowler on Feb 7, 2015
@@ -30,7 +32,7 @@ public class Game extends JFrame implements Runnable {
 
 	// Graphics
 	private Graphics2D graphics;
-	private Canvas cs = new Canvas();
+	public Canvas cs = new Canvas();
 	private BufferedImage background = new BufferedImage(WIDTH, HEIGHT,
 			BufferedImage.TYPE_INT_RGB);
 
@@ -96,17 +98,20 @@ public class Game extends JFrame implements Runnable {
 			BufferedImage playerSprite = 
 					ImageIO.read(getClass().getResourceAsStream("/player.png"));
 			player = new Player(playerSprite);
+			mob = new Mob(Vector2f.c(10, 10), ImageIO.read(getClass().getResourceAsStream("/mob.png")));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		
 		keyInput = new KeyInput();
 		cs.addKeyListener(keyInput);
+		new MouseInput(this);
 		start();
 	}
 
+	//TODO
+	Mob mob;
+	
 	private void render() {
 		BufferStrategy bs = cs.getBufferStrategy();
 		if (bs == null) {
@@ -119,12 +124,14 @@ public class Game extends JFrame implements Runnable {
 		graphics.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
 
 		player.render(graphics);
+		mob.render(graphics);
 
 		bs.show();
 	}
 
 	private void update() {
 		player.update();
+		mob.update();
 	}
 
 	private class Constants {

@@ -8,19 +8,17 @@ import xyz.jadonfowler.brutalpixel.game.KeyInput;
 public class Player extends Entity{
 
 	private static final int MOVE_SPEED = 15;
-
-	
 	
 	public Player(BufferedImage image){
 		this.name = "Player";
-		this.position = new Position((Game.WIDTH/2)-(image.getWidth()/2), (Game.HEIGHT/2)-(image.getHeight()/2));
+		this.position = new Vector2f((Game.WIDTH/2)-(image.getWidth()/2), (Game.HEIGHT/2)-(image.getHeight()/2));
 		this.sprite = image;
 		this.health = 20;
 	}
 	
 	
 	public void render(Graphics2D g) {
-		g.drawImage(sprite, position.x, position.y, null);
+		g.drawImage(sprite, (int)position.x, (int)position.y, null);
 	}
 
 	public void update() {
